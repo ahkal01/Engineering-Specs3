@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<application
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xsi:schemaLocation="http://research.sun.com/wadl/2006/10 wadl.xsd"
+    xmlns="http://research.sun.com/wadl/2006/10"
+    xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+    
+    <resources base="https://api.del.icio.us/">
+        <resource path="v1/posts/update">
+            <method name="GET">
+                <request>
+                    <representation mediaType="application/json"> 
+                      <apigee:payload>
+                        <![CDATA[
+                          {
+                            "userName": "{userName}",
+                            "fullName": "{FirstName LastName}",
+                            "password": "{password}"
+                          }
+                        ]]>
+                      </apigee:payload>
+                    </representation>
+                </request>
+                <response>
+                    <representation mediaType="application/json"> 
+                      <apigee:payload>
+                        <![CDATA[
+                          {
+                            "userName": "{userName}",
+                            "fullName": "{FirstName LastName}",
+                            "password": "{password}"
+                          }
+                        ]]>
+                      </apigee:payload>
+                    </representation>
+                </response>
+            </method>
+        </resource>
+    </resources>
+</application>
+
+

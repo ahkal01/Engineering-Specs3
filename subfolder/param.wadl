@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<application
+  xmlns:html="http://www.w3.org/1999/xhtml"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xsi:schemaLocation="http://research.sun.com/wadl/2006/10 wadl.xsd"
+  xmlns="http://research.sun.com/wadl/2006/10">
+
+<resources base="http://example.com/widgets">  
+  <resource path="{widgetId}">  
+    <param name="customerId" style="query"/>  
+    <method name="GET">  
+      <request>  
+        <param name="verbose" style="query" type="xsd:boolean"/>  
+      </request>  
+      <response>  
+      </response>  
+    </method>  
+  </resource>  
+</resources>
+</application>

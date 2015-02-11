@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<application
+  xmlns:html="http://www.w3.org/1999/xhtml"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xsi:schemaLocation="http://research.sun.com/wadl/2006/10 wadl.xsd"
+  xmlns="http://research.sun.com/wadl/2006/10">
+
+  <resources base="http://localhost:8080/">
+    <resource path="/bookstore/{id}" type="#bookResource"/>
+    <resource path="/books">
+      <resource path="/bookstore/{id}" type="#bookResource"/>
+    </resource>
+  </resources>
+
+  <resource_type id="bookResource">
+    <param name="id" style="template"/>
+    <method name="GET">
+      <response>
+        <representation mediaType="application/xml" element="ns:thebook"/>
+      </response>
+    </method>
+  </resource_type>
+</application>

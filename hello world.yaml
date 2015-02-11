@@ -1,0 +1,29 @@
+swagger: "2.0"
+info:
+  title: Hello World
+  description: Generating greetings in our application.
+  version: 1.0.0
+schemes:
+  - http
+host: localhost:8000
+basePath: /greetings
+paths:
+  /hello/{subject}:
+    get:
+      summary: Greet our subject with hello!
+      parameters:
+        - name: subject
+          in: path
+          description: The subject to be greeted.
+          required: true
+          type: string
+      produces:
+        - application/json
+      responses:
+        default:
+          description: Success
+          examples:
+            application/json: |-
+              {
+                "message": "Hello world"
+              }

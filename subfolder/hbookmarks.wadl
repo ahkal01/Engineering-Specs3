@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:schemaLocation="http://research.sun.com/wadl/2006/10 wadl.xsd" xmlns="http://research.sun.com/wadl/2006/10">
+    <resources base="http://hbookmark.com/">
+        <resource path="api">
+            <resource path="bookmarks">
+                <doc>Returns the most recent bookmarks posted by a given user. It's also possible to return previous bookmarks using the page parameter.</doc>
+                <method name="GET">
+                    <request>
+                        <param href="#userParam"/>
+                        <param href="#pageParam"/>
+                        <param href="#rppParam"/>
+                        <param href="#cbParam"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/json" element="linksResponse"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="tags">
+                <method name="GET">
+                    <request>
+                        <param href="#userParam"/>
+                        <param href="#pageParam"/>
+                        <param href="#rppParam"/>
+                        <param href="#cbParam"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/json" element="resp"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="tagged">
+                <method name="GET">
+                    <request>
+                        <param href="#userParam"/>
+                        <param name="tag" type="xsd:string" style="query">
+                            <doc xml:lang="en" title="tag (Sample Value: Politics)">Estimated Type (supposed): [xsd:string]</doc>
+                        </param>
+                        <param href="#pageParam"/>
+                        <param href="#rppParam"/>
+                        <param href="#cbParam"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/json" element="linksResponse"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="search">
+                <method name="GET">
+                    <request>
+                        <param href="#userParam"/>
+                        <param name="q" type="xsd:string" style="query" required="true">
+                            <doc xml:lang="en" title="q (Sample Value: twitter)">Estimated Type (supposed): [xsd:string]</doc>
+                        </param>
+                        <param href="#pageParam"/>
+                        <param href="#rppParam"/>
+                        <param href="#cbParam"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/json" element="linksResponse"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="bookmarkedby">
+                <method name="GET">
+                    <request>
+                        <param name="link_id" type="xsd:integer" style="query">
+                            <doc xml:lang="en" title="link_id (Sample Value: 4345page=1)">Estimated Type (manual): [xsd:integer]</doc>
+                        </param>
+                        <param href="#rppParam"/>
+                        <param href="#cbParam"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/json" element="resp"/>
+                    </response>
+                </method>
+            </resource>
+        </resource>
+    </resources>
+    <param name="user" type="xsd:string" style="query" required="true" id="userParam">
+        <doc xml:lang="en" title="user (Sample Value: jondoe)">Estimated Type (supposed): [xsd:string]</doc>
+    </param>
+    <param name="page" type="xsd:integer" style="query" default="1" id="pageParam">
+        <doc xml:lang="en" title="page (Sample Value: 1)">Estimated Type (supposed): [xsd:integer]</doc>
+    </param>
+    <param name="rpp" type="xsd:integer" style="query" default="20" id="rppParam">
+        <doc xml:lang="en" title="rpp (Sample Value: 20)">Estimated Type (sure): [xsd:integer]</doc>
+    </param>
+    <param name="cb" type="xsd:string" style="query" id="cbParam">
+        <doc xml:lang="en" title="cb (Sample Value: jsonp)">Estimated Type (supposed): [xsd:string]</doc>
+    </param>
+</application>

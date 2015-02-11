@@ -1,0 +1,151 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "0.0.1",
+        "title": "Customer APIs"
+    },
+    "host": "localhost",
+    "basePath": "/",
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "x-a127-config": {},
+    "x-volos-resources": {},
+    "paths": {
+        "/hello": {
+            "x-swagger-router-controller": "hello_world",
+            "x-volos-authorizations": {},
+            "x-volos-apply": {},
+            "get": {
+                "description": "Returns 'Hello' to the caller",
+                "operationId": "hello",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "The name of the person to whom to say hello",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "HelloWorldResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error",
+                        "schema": {
+                            "$ref": "ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/customer/{customerId}": {
+            "x-swagger-router-controller": "customer",
+            "x-volos-authorizations": {},
+            "x-volos-apply": {},
+            "get": {
+                "description": "Returns single customer to the caller",
+                "operationId": "getCustomerByCustomerID",
+                "parameters": [
+                    {
+                        "name": "customerId",
+                        "in": "path",
+                        "description": "The customerId of customer to return to the caller",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "Customer"
+                        }
+                    },
+                    "default": {
+                        "description": "Error",
+                        "schema": {
+                            "$ref": "ErrorResponse"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "HelloWorldResponse": {
+            "required": [
+                "message"
+            ],
+            "properties": {
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        "ErrorResponse": {
+            "required": [
+                "message"
+            ],
+            "properties": {
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        "Customer": {
+            "id": "Customer",
+            "name": "customer",
+            "description": "Details concerning the person or organization that is a customer.",
+            "type": "object",
+            "properties": {
+                "key": {
+                    "name": "key",
+                    "type": "array",
+                    "items": {
+                        "$ref": "DomainKey"
+                    }
+                },
+                "customerId": {
+                    "name": "customerId",
+                    "description": "Uniquely identifies the customer.",
+                    "type": "string"
+                }
+            }
+        },
+        "DomainKey": {
+            "id": "DomainKey",
+            "name": "key",
+            "type": "object",
+            "properties": {
+                "keyName": {
+                    "name": "keyName",
+                    "description": "The name of the key identifier, within the UsageContext. For example, if an object can be \nidentified by a field called code, then keyName = \"code\".",
+                    "type": "string"
+                },
+                "keyValue": {
+                    "name": "keyValue",
+                    "description": "The value of the key identifier. For example, if an object can be \nidentified by a field called code, then keyName = \"code\". The keyValue would be set to the value of the field called \"code\".",
+                    "type": "string"
+                },
+                "domainName": {
+                    "name": "domainName",
+                    "description": "The system or business domain that is the source of the key. For example: PREPAIDBILLING, WEBCATALOG, SAMSON, SAP.\t\t\t",
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

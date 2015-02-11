@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:schemaLocation="http://research.sun.com/wadl/2006/10 wadl.xsd" xmlns="http://research.sun.com/wadl/2006/10">
+    <resources base="http://secure.diigo.com/">
+        <resource path="api">
+            <resource path="v2">
+                <resource path="bookmarks">
+                    <method name="GET">
+                        <request>
+                            <param name="user" type="xsd:string" style="query" required="true">
+                                <doc xml:lang="en" title="user (Sample Value: joel)">Estimated Type (supposed): [xsd:string]</doc>
+                            </param>
+                            <param name="count" type="xsd:integer" style="query" default="10">
+                                <doc xml:lang="en" title="count (Sample Value: 10)">Estimated Type (sure): [xsd:integer]</doc>
+                            </param>
+                            <param name="start" type="xsd:integer" style="query" default="0">
+                                <doc xml:lang="en" title="start (Sample Value: 0)">Estimated Type (supposed): [xsd:integer]</doc>
+                            </param>
+                            <param name="sort" type="sortType" style="query" default="0">
+                                <option value="0"/>
+                                <option value="1"/>
+                                <option value="2"/>
+                                <option value="3"/>
+                                <doc xml:lang="en" title="sort (Sample Value: 1)">Estimated Type (manual): [sortType]</doc>
+                            </param>
+                            <param name="tags" type="xsd:string" style="query">
+                                <doc xml:lang="en" title="tags (Sample Value: Spot,Film)">Estimated Type (manual): [xsd:string]</doc>
+                            </param>
+                            <param name="filter" type="xsd:string" style="query">
+                                <doc xml:lang="en" title="filter (Sample Value: public)">Estimated Type (supposed): [xsd:string]</doc>
+                            </param>
+                            <param name="list" type="xsd:string" style="query">
+                                <doc xml:lang="en" title="list (Sample Value: goodee)">Estimated Type (supposed): [xsd:string]</doc>
+                            </param>
+                        </request>
+                        <response>
+                            <representation mediaType="application/json" element="bookmarks"/>
+                        </response>
+                    </method>
+                    <method name="POST">
+                        <request>
+                            <param name="url" type="xsd:anyURI" style="query" required="true">
+                                <doc xml:lang="en" title="url (Sample Value: www.diigo.com)">Estimated Type (manual): [xsd:anyURI]</doc>
+                            </param>
+                            <param name="title" type="xsd:string" style="query" required="true">
+                                <doc xml:lang="en" title="title (Sample Value: Diigo)">Estimated Type (supposed): [xsd:string]</doc>
+                            </param>
+                            <param name="tags" type="xsd:string" style="query">
+                                <doc xml:lang="en" title="tags (Sample Value: diigo,bookmark,highlight)">Estimated Type (manual): [xsd:string]</doc>
+                            </param>
+                            <param name="shared" type="xsd:boolean" style="query">
+                                <doc xml:lang="en" title="shared (Sample Value: yes)">Estimated Type (sure): [xsd:boolean]</doc>
+                            </param>
+                            <param name="desc" type="xsd:string" style="query">
+                                <doc xml:lang="en" title="desc (Sample Value: sample)">Estimated Type (supposed): [xsd:string]</doc>
+                            </param>
+                            <param name="readLater" type="xsd:boolean" style="query">
+                                <doc xml:lang="en" title="readLater (Sample Value: no)">Estimated Type (sure): [xsd:boolean]</doc>
+                            </param>
+                        </request>
+                        <response>
+                            <representation mediaType="application/json" element="responce"/>
+                        </response>
+                    </method>
+                </resource>
+            </resource>
+        </resource>
+    </resources>
+</application>

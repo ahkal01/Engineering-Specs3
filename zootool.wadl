@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:schemaLocation="http://research.sun.com/wadl/2006/10 wadl.xsd" xmlns="http://research.sun.com/wadl/2006/10">
+    <resources base="http://zootool.com/">
+        <resource path="api">
+            <resource path="users">
+                <resource path="items">
+                    <doc xml:lang="en" title="items">Get the latest items from all users or specify a username to get all items from a specific user. Authenticate to get all private items of a user as well</doc>
+                    <method name="GET">
+                        <request>
+                            <param name="username" type="xsd:string" style="query"  id="usernameParam"/>
+                            <param href="#apikeyParam"/>
+                            <param name="login" type="xsd:boolean" style="query">
+                                <doc xml:lang="en" title="login">must be true if you want to make an authenticated call via digest</doc>
+                            </param>
+                            <param name="tag" type="xsd:string" style="query"/>
+                            <param href="#offsetParam"/>
+                            <param href="#limitParam"/>
+                        </request>
+                        <response>
+                            <representation mediaType="application/json" element="items"/>
+                        </response>
+                    </method>
+                </resource>
+                <resource path="info">
+                    <doc xml:lang="en" title="info">Get info about a certain user</doc>
+                    <method name="GET">
+                        <request>
+                            <param href="#usernameParam"/>
+                            <param href="#apikeyParam"/>
+                        </request>
+                        <response>
+                            <representation mediaType="application/json" element="user"/>
+                        </response>
+                    </method>
+                </resource>
+                <resource path="validate">
+                    <doc xml:lang="en" title="info">Validate the user credentials. Useful for logins</doc>
+                    <method name="GET">
+                        <request>
+                            <param href="#usernameParam"/>
+                            <param href="#apikeyParam"/>
+                        </request>
+                        <response>
+                            <representation mediaType="application/json" element="user"/>
+                        </response>
+                    </method>
+                </resource>
+                <resource path="friends">
+                    <doc xml:lang="en" title="info">Get a list of friends from the user</doc>
+                    <method name="GET">
+                        <request>
+                            <param href="#usernameParam"/>
+                            <param href="#apikeyParam"/>
+                            <param href="#offsetParam"/>
+                            <param href="#limitParam"/>
+                            <param href="#searchParam"/>
+                        </request>
+                        <response>
+                            <representation mediaType="application/json" element="users"/>
+                        </response>
+                    </method>
+                </resource>
+                <resource path="followers">
+                    <method name="GET">
+                        <request>
+                            <param href="#usernameParam"/>
+                            <param href="#apikeyParam"/>
+                            <param href="#offsetParam"/>
+                            <param href="#limitParam"/>
+                            <param href="#searchParam"/>
+                        </request>
+                        <response>
+                            <representation mediaType="application/json" element="users"/>
+                        </response>
+                    </method>
+                </resource>
+                <resource path="profiles">
+                    <method name="GET">
+                        <request>
+                            <param href="#usernameParam"/>
+                            <param href="#apikeyParam"/>
+                        </request>
+                        <response>
+                            <representation mediaType="application/json" element="profiles"/>
+                        </response>
+                    </method>
+                </resource>
+            </resource>
+            <resource path="items">
+                <resource path="info">
+                    <doc xml:lang="en" title="info"> Get the info for an item by uid</doc>
+                    <method name="GET">
+                        <request>
+                            <param name="uid" type="xsd:string" style="query"/>
+                            <param href="#apikeyParam"/>
+                        </request>
+                        <response>
+                            <representation mediaType="application/json" element="item"/>
+                        </response>
+                    </method>
+                </resource>
+                <resource path="popular">
+                    <doc xml:lang="en" title="popular"> Get the most popular items</doc>
+                    <method name="GET">
+                        <request>
+                            <param name="type" type="period" style="query" default="all">
+                                <option value="all"/>
+                                <option value="month"/>
+                                <option value="week"/>
+                                <option value="today"/>
+                            </param>
+                            <param href="#apikeyParam"/>
+                        </request>
+                        <response>
+                            <representation mediaType="application/json" element="items"/>
+                        </response>
+                    </method>
+                </resource>
+            </resource>
+            <resource path="add">
+                <method name="GET">
+                    <request>
+                        <param name="url" type="xsd:anyURI" required="true" style="query"/>
+                        <param name="title" type="xsd:string" required="true" style="query"/>
+                        <param href="#apikeyParam"/>
+                        <param name="tags" type="xsd:string" style="query">
+                            <doc xml:lang="en" title="tags">comma separated string of tags</doc>
+                        </param>
+                        <param name="description" type="xsd:string" style="query"/>
+                        <param name="referer" type="xsd:anyURI" style="query">
+                            <doc xml:lang="en" title="referer"> must be a valid url</doc>
+                        </param>
+                        <param name="public" type="yesNo" style="query">
+                            <option value="y"/>
+                            <option value="n"/>
+                        </param>
+                    </request>
+                    <response>
+                        <representation mediaType="application/json" element="addResponce"/>
+                    </response>
+                </method>
+            </resource>
+        </resource>
+    </resources>
+    <param name="username" type="xsd:string" style="query" required="true" id="usernameParam">
+    </param>
+    <param name="apikey" type="xsd:string" style="query" required="true" id="apikeyParam">
+    </param>
+    <param name="offset" type="xsd:integer" style="query" id="offsetParam">
+    </param>
+    <param name="limit" type="xsd:integer" style="query" id="limitParam">
+    </param>
+    <param name="search" type="xsd:boolean" style="query" id="searchParam">
+    </param>
+</application>

@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+<application
+  xmlns:html="http://www.w3.org/1999/xhtml"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xsi:schemaLocation="http://research.sun.com/wadl/2006/10 wadl.xsd"
+  xmlns="http://research.sun.com/wadl/2006/10"
+  xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+
+
+  <resources base="http://booksforall.com">
+    <doc xml:lang="en" title="Bookshop API">
+      You can get an individual book or search
+      for books by title, author and/or publisher.
+    </doc>
+    
+    <resource path="/bookstore/book">
+      <method href="#createbook"/>
+    </resource>
+
+    <resource path="/bookstore/book/{id}" type="#getbook"/>
+    
+    <resource path="/bookstore/booksearch" type="#bookSearch"/>
+    
+  </resources>
+
+  <resources base="http://booksforall.com/v1">
+    <doc xml:lang="en" title="Bookshop API">
+      You can get an individual book or search
+      for books by title, author and/or publisher.
+    </doc>
+    
+    <resource path="/bookstore/book">
+      <method href="#createbook"/>
+    </resource>
+
+    <resource path="/bookstore/book/{id}" type="#getbook"/>
+
+  </resources>
+
+
+  <!--  ==================================  -->
+  <!--  Common Resources are defined below  -->
+  <!--  ==================================  -->
+  
+  <method name="POST" id="createbook">
+    <request>
+      <param name="title" style="query" type="xsd:string" required="true"/>
+      <param name="author" style="query" type="xsd:string" required="true"/>
+      <param name="publisher" style="query" type="xsd:string" required="true"/>
+    </request>
+  </method>
+
+  <resource_type id="getbook">
+    <param name="id" style="template" type="xsd:string"/>
+    <method name="GET">
+      <request>  
+        <param name="format" style="query" required="true">
+          <option value="xml" mediaType="application/xml"/>
+          <option value="json" mediaType="application/json"/>
+        </param>
+      </request>  
+      <response>
+        <representation mediaType="application/xml">
+          <apigee:payload>
+            <![CDATA[
+                <book>
+                  <title>{title}</title>
+                  <author>{author}</author>
+                  <publisher>{publisher}</publisher>
+                </book> 
+            ]]>
+          </apigee:payload>
+        </representation>
+        <representation mediaType="application/json">
+          <apigee:payload>
+            <![CDATA[{ 
+                "title": "{title}", 
+                "author": "{author}",
+                "publisher": "{publisher}"
+            }]]>
+          </apigee:payload>
+        </representation>
+      </response>
+    </method>
+  </resource_type>
+    
+  <resource_type id="bookSearch">
+    <param name="title" style="query" type="xsd:string" required="false"/>
+    <param name="author" style="query" type="xsd:string" required="false"/>
+    <param name="publisher" style="query" type="xsd:string" required="false"/>
+    <method name="GET">
+      <response>
+        <representation mediaType="application/xml">
+          <doc xml:lang="en" title="Info">Zero or more books will be returned.</doc>
+        </representation>
+      </response>
+    </method>
+  </resource_type>
+
+</application>

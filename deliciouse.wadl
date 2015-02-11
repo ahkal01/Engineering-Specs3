@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:schemaLocation="http://research.sun.com/wadl/2006/10 wadl.xsd" xmlns="http://research.sun.com/wadl/2006/10">
+    <resources base="https://api.del.icio.us/">
+        <resource path="v1">
+            <resource path="posts">
+                <resource path="update">
+                    <method name="GET">
+                        <request/>
+                        <response>
+                            <representation mediaType="application/xml" element="update"/>
+                        </response>
+                    </method>
+                </resource>
+                <resource path="add">
+                    <method name="GET">
+                        <request>
+                        </request>
+                        <response>
+                        </response>
+                    </method>
+                </resource>
+            </resource>
+        </resource>
+    </resources>
+</application>

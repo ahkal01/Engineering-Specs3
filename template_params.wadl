@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application xmlns="http://wadl.dev.java.net/2009/02">
+  <doc xml:lang="en" title="Locator"/>
+  <resources base="https://ec2-54-244-67-54.us-west-2.compute.amazonaws.com:8443">
+    <resource path="locator/v2/country/{countryId}/airport/{airportId}" id="Get Airport">
+      <doc xml:lang="en" title="Get Airport"/>
+      <param name="countryId" default="US" type="xs:string" required="true" style="template" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+      <param name="airportId" default="ORD" type="xs:string" required="true" style="template" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+      <param name="status" default="A" type="xs:string" required="false" style="query" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+      <method name="GET" id="Get Airport">
+        <doc xml:lang="en" title="Get Airport"/>
+        <request/>
+        <response status="200">
+          <representation mediaType="text/xml;charset=UTF-8"/>
+          <representation mediaType="application/json;charset=UTF-8"/>
+        </response>
+        <response status="500">
+          <representation mediaType="text/xml;charset=UTF-8"/>
+        </response>
+      </method>
+    </resource>
+	<resource path="locator/v2/cash/network/{networkId}/countries" id="Get Countries">
+      <doc xml:lang="en" title="Get Countries"/>
+      <param name="networkId" default="DISCOVER" type="xs:string" required="true" style="template" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+      <method name="GET" id="Get Countries">
+        <doc xml:lang="en" title="Get Countries"/>
+        <request/>
+        <response status="200">
+          <representation mediaType="text/plain;charset=UTF-8"/>
+          <representation mediaType="text/xml;charset=UTF-8"/>
+          <representation mediaType="application/json;charset=UTF-8"/>
+        </response>
+        <response status="500">
+          <representation mediaType="text/plain;charset=UTF-8"/>
+          <representation mediaType="text/xml;charset=UTF-8"/>
+        </response>
+      </method>
+    </resource>
+	<resource path="locator/v2/cash/networks/{networkIds}/location" id="Search Cash Location">
+      <doc xml:lang="en" title="Search Cash Location"/>
+      <param name="networkIds" default="PULSE,DISCOVER" type="xs:string" required="false" style="template" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+      <param name="latitude" default="49" type="xs:string" required="false" style="query" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+      <param name="longitude" default="-123" type="xs:string" required="false" style="query" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+      <param name="countryCode" type="xs:string" required="false" default="" style="query" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+      <param name="streetAddress" type="xs:string" required="false" default="" style="query" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+      <param name="city" type="xs:string" required="false" default="" style="query" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+      <param name="state" type="xs:string" required="false" default="" style="query" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+      <param name="postalCode" type="xs:string" required="false" default="" style="query" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+      <param name="surchargeFree" type="xs:string" required="false" default="" style="query" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+      <param name="institutionName" type="xs:string" required="false" default="" style="query" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+      <param name="availability" type="xs:string" required="false" default="" style="query" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+      <param name="open24" type="xs:string" required="false" default="" style="query" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+      <param name="driveUp" type="xs:string" required="false" default="" style="query" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+      <param name="handicapped" type="xs:string" required="false" default="" style="query" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+      <param name="overTheCounter" default="true" type="xs:string" required="false" style="query" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+      <param name="radius" default="100" type="xs:string" required="false" style="query" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+      <param name="units" type="xs:string" required="false" default="" style="query" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+      <param name="maxResults" default="100" type="xs:string" required="false" style="query" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+      <method name="GET" id="Search Cash Location">
+        <doc xml:lang="en" title="Search Cash Location"/>
+        <request/>
+        <response status="500">
+          <representation mediaType="application/json;charset=UTF-8"/>
+        </response>
+        <response status="200">
+          <representation mediaType="application/json;charset=UTF-8"/>
+          <representation mediaType="text/xml;charset=UTF-8"/>
+        </response>
+      </method>
+    </resource>
+  </resources>
+</application>
